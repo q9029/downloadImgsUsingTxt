@@ -36,6 +36,7 @@ declare -i i=0
 while read line;
 do
     echo $line
-    curl -o $binary_path/$OUTPUT_DIR/$i.jpg $line
+    filename=( `echo $line | awk -F / '{print $NF}'`)
+    curl -o $binary_path/$OUTPUT_DIR/$filename $line
     i=$((i+1))
 done < $FILENAME
